@@ -74,7 +74,8 @@ window.onload = function() {
         y: Math.round(Math.random()*(canvasHeight / canvasWidth)+1)
     }
 
-
+    //Choque con extremos del canvas
+    // if (snakeX < 0 || snakeY < 0 || snakeX >= canvasWidth / snakeWidth || snakeY >= canvasHeight/snakeHeigth)
 
     function draw() {
         contextCanvas.clearRect(0, 0, canvasWidth, canvasHeight);
@@ -84,15 +85,20 @@ window.onload = function() {
             drawSnake(x,y);
         }
 
+        
+
         //Pintando la comida
         drawFood(food.x, food.y);
 
+        
     //Snake Head
     var snakeX= snake[0].x;
     var snakeY= snake[0].y;
 
-    //Quitar cola 
-    snake.pop(); 
+   //choque con bordes de canvas
+   if (snakeX < 0 || snakeY < 0 || snakeX >= canvasWidth / snakeWidth || snakeY >= canvasHeight / snakeHeigth ) {
+    location.reload();
+}
 
     //condicionales para los movimientos
     if (direction === 'left') snakeX--;
@@ -102,16 +108,27 @@ window.onload = function() {
 
 
 
-    if(snakeX == food.x && snakeY == food.y) {
-        
+    if(snakeX === food.x && snakeY === food.y) {
+        food = {
+            x: Math.round(Math.random()* (canvasWidth / snakeWidth)+1),
+            y: Math.round(Math.random()*(canvasHeight / canvasWidth)+1)
+        }
+        var newHead = {
+            x: snakeX,
+            y: snakeY
+        };
+    }else {
+        //Quitar cola 
+    snake.pop();
+    var newHead = {
+        x: snakeX,
+        y: snakeY
+        };
     }
 
     //añadiendo la cabeza a una cabeza anterior
     //snakeX++;
-    var newHead = {
-        x: snakeX,
-        y: snakeY
-    };
+    
 
     snake.unshift(newHead); //agregar  cabezas con unshift
 }
