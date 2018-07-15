@@ -12,7 +12,7 @@ window.onload = function() {
     var snakeHeigth = 12;
 
     //direccion de la serpiente
-    var direction = 'right'; //direccipon donde va dirigida la serpiente por default
+    var direction = 'right'; //direccion donde va dirigida la serpiente por default
 
     //añadiendo eventListener a la dirección interactucar con el teclado
     document.addEventListener('keydown', changeDirection);
@@ -81,13 +81,13 @@ window.onload = function() {
     snake.pop(); 
 
     //condicionales para los movimientos
-    if (direction === 'left') snakeX--;
-    else if (direction === 'up') snakeY--;
-    else if (direction === 'right') snakeX++;
-    else if (direction === 'down') snakeY++;
+    if (direction == 'left') snakeX--;
+    else if (direction == 'up') snakeY--;
+    else if (direction == 'right') snakeX++;
+    else if (direction == 'down') snakeY++;
 
     //añadiendo la cabeza a una cabeza anterior
-    snakeX++;
+    //snakeX++;
     var newHead = {
         x: snakeX,
         y: snakeY
@@ -96,7 +96,7 @@ window.onload = function() {
     snake.unshift(newHead); //agregar  cabezas con unshift
 }
 
-this.setInterval(draw, 60);
+this.setInterval(draw, 80);
 
 
 
